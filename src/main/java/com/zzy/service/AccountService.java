@@ -2,7 +2,6 @@ package com.zzy.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.zzy.entity.Account;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 
@@ -14,6 +13,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface AccountService extends IService<Account> {
-    public Account getAccountByUsername(String username);
-
+    Account getAccountByUsername(String username);
 }
