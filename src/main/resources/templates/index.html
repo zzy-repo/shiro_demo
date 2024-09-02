@@ -9,25 +9,32 @@
 <body>
 <div class="container">
     <h1>Welcome Page</h1>
-    <div th:if="${session.account} != null" class="user-info">
-        <span th:text="${session.account.username} + ' welcome back!'"></span>
-        <a href="/logout">Exit</a>
+    <div th:if="${session.account} != null">
+        <div class="user-info">
+            <span th:text="'Hello! '+${session.account.username}"></span>
+            <a href="/logout">Exit</a>
+        </div>
+        <div shiro:isAuthenticated() class="nav-links">
+            <div class="nav-item">
+                <a href="/main">Main</a>
+            </div>
+            <div shiro:hasPermission="manage" class="nav-item">
+                <a href="/manage">Manage</a>
+            </div>
+            <div shiro:hasRole="administrator" class="nav-item">
+                <a href="/administrator">Administrator</a>
+            </div>
+        </div>
     </div>
     <div th:unless="${session.account} != null" class="not-logged-in">
         <p>User not logged in.</p>
-    </div>
-
-    <div class="nav-links">
-        <a href="/main" class="nav-item">Main</a>
-        <div shiro:hasPermission="manage" class="nav-item">
-            <a href="/manage">Manage</a>
-        </div>
-        <div shiro:hasRole="administrator" class="nav-item">
-            <a href="/administrator">Administrator</a>
+        <div class="nav-links">
+            <div class="nav-item">
+                <a href="/login">login</a>
+            </div>
         </div>
     </div>
-
-
 </div>
+
 </body>
 </html>

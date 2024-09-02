@@ -34,7 +34,7 @@ public class AccountController {
             int timeout = 30 * 60 * 1000;
             session.setTimeout(timeout);
 
-            return "/index";
+            return "redirect:/index";
         } catch (UnknownAccountException e) {
             log.error(e.getMessage(), e);
             model.addAttribute("msg", "wrong username!");
@@ -56,7 +56,7 @@ public class AccountController {
     public String logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "/index";
+        return "redirect:/index";
     }
 
 }
