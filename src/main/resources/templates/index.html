@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.thymeleaf.org/thymeleaf-extras-shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Page</title>
+    <link rel="icon" href="#">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Welcome Page</h1>
+    <div th:if="${session.account} != null" class="user-info">
+        <span th:text="${session.account.username} + ' welcome back!'"></span>
+        <a href="/logout">Exit</a>
+    </div>
+    <div th:unless="${session.account} != null" class="not-logged-in">
+        <p>User not logged in.</p>
+    </div>
+
+    <div class="nav-links">
+        <a href="/main" class="nav-item">Main</a>
+        <div shiro:hasPermission="manage" class="nav-item">
+            <a href="/manage">Manage</a>
+        </div>
+        <div shiro:hasRole="administrator" class="nav-item">
+            <a href="/administrator">Administrator</a>
+        </div>
+    </div>
+
+
+</div>
+</body>
+</html>
