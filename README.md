@@ -1,4 +1,7 @@
-### mysql生成表格account
+# springboot集成Shiro的安全认证系统
+> 技术栈：springboot+Shiro+thymeleaf
+
+### 数据库设计
 
 ```mysql
 create table account
@@ -16,7 +19,6 @@ create table account
 ### shiro配置类
 
 ```java
-
 @Configuration
 @Component
 public class ShiroConfig {
@@ -64,22 +66,6 @@ public class ShiroConfig {
 ### 控制器
 
 ```java
-package com.zzy.controller;
-
-import com.zzy.entity.Account;
-import lombok.extern.slf4j.Slf4j;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.session.Session;
-import org.apache.shiro.subject.Subject;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 @Controller
 @Slf4j
 public class AccountController {
@@ -131,23 +117,6 @@ public class AccountController {
 ### realm
 
 ```java
-package com.zzy.realm;
-
-import com.zzy.entity.Account;
-import com.zzy.service.AccountService;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
-import org.apache.shiro.authz.AuthorizationInfo;
-import org.apache.shiro.authz.SimpleAuthorizationInfo;
-import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
-import java.util.Set;
-
 @Component
 public class AccountRealm extends AuthorizingRealm {
 
