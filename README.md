@@ -1,5 +1,5 @@
 # springboot集成Shiro的安全认证系统
-> 技术栈：springboot+Shiro+thymeleaf
+> 技术栈：Springboot+Shiro+Thymeleaf+Mybatisplus
 
 ### 数据库设计
 
