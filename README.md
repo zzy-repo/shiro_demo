@@ -155,3 +155,102 @@ public class AccountRealm extends AuthorizingRealm {
     }
 }
 ```
+
+### pom配置
+
+```xml
+<dependencies>
+    <!-- spring-boot-dependencies -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>com.baomidou</groupId>
+        <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+        <version>3.5.7</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
+    <dependency>
+        <groupId>com.auth0</groupId>
+        <artifactId>java-jwt</artifactId>
+        <version>4.4.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api &ndash;&gt;-->
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/com.github.theborakompanioni/thymeleaf-extras-shiro -->
+    <dependency>
+        <groupId>com.github.theborakompanioni</groupId>
+        <artifactId>thymeleaf-extras-shiro</artifactId>
+        <version>2.1.0</version>
+    </dependency>
+
+    <!--
+        直接引入shiro会发生报错:java.lang.ClassNotFoundException: javax.servlet.Filter.
+        这是由于Spring Boot 3.0 使用了Servlet 5.0，而javax.servlet此时已经迁移到了jakarta.servlet中.
+        Shiro已经提供了适配Servlet 5.0 的依赖包，使用<classifier>标签即可选取适配版本.
+        不过部分Shiro包中仍嵌套依赖了一些没有适配jakarta的依赖包.
+        所以我们需要使用<exclude>将其排除，再引入同版本的jakarta适配包.
+        参考链接:https://blog.csdn.net/weixin_43492211/article/details/131217344
+    -->
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-spring</artifactId>
+        <version>2.0.1</version>
+        <classifier>jakarta</classifier> <!-- 使用classifier标签选择适配版本 -->
+        <exclusions> <!-- 排除未适配的依赖 -->
+            <exclusion>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-web</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <!-- 引入适配jakarta的依赖包 -->
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-core</artifactId>
+        <classifier>jakarta</classifier>
+        <version>2.0.1</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-web</artifactId>
+        <classifier>jakarta</classifier>
+        <version>2.0.1</version>
+        <exclusions>
+            <exclusion>
+                <groupId>org.apache.shiro</groupId>
+                <artifactId>shiro-core</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+</dependencies>
+```
