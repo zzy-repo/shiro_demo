@@ -1,6 +1,8 @@
 # springboot集成Shiro的安全认证系统
 > 技术栈：Springboot+Shiro+Thymeleaf+Mybatisplus
 
+![image-20240904131813728](https://gitee.com/zzy2401/picbed/raw/master/images/image-20240904131813728.png)
+
 ### 数据库设计
 
 ```mysql
