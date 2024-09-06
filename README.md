@@ -1,4 +1,4 @@
-# springboot集成Shiro的安全认证系统
+# springboot集成Shiro的安全认证程序
 > 技术栈：Springboot+Shiro+Thymeleaf+Mybatisplus
 
 ![image-20240904131813728](https://gitee.com/zzy2401/picbed/raw/master/images/image-20240904131813728.png)
