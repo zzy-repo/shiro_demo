@@ -3,6 +3,11 @@
 
 ![image-20240904131813728](https://gitee.com/zzy2401/picbed/raw/master/images/image-20240904131813728.png)
 
+### 时序图
+
+![20240906152403](https://gitee.com/zzy2401/picbed/raw/master/images/20240906152403.png)
+
+
 ### 数据库设计
 
 ```mysql
